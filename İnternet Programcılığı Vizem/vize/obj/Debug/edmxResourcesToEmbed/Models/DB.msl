@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB01ModelStoreContainer" CdmEntityContainer="DB01Entities3">
+    <EntitySetMapping Name="ilan">
+      <EntityTypeMapping TypeName="DB01Model.ilan">
+        <MappingFragment StoreEntitySet="ilan">
+          <ScalarProperty Name="ilanId" ColumnName="ilanId" />
+          <ScalarProperty Name="ilanNo" ColumnName="ilanNo" />
+          <ScalarProperty Name="ilanFiyat" ColumnName="ilanFiyat" />
+          <ScalarProperty Name="ilanTarihi" ColumnName="ilanTarihi" />
+          <ScalarProperty Name="ilanEmlakTipi" ColumnName="ilanEmlakTipi" />
+          <ScalarProperty Name="ilanMetreKareBrut" ColumnName="ilanMetreKareBrut" />
+          <ScalarProperty Name="ilanMetreKareNet" ColumnName="ilanMetreKareNet" />
+          <ScalarProperty Name="ilanOdaSayisi" ColumnName="ilanOdaSayisi" />
+          <ScalarProperty Name="ilanBinaYasi" ColumnName="ilanBinaYasi" />
+          <ScalarProperty Name="ilanBulunduguKat" ColumnName="ilanBulunduguKat" />
+          <ScalarProperty Name="ilanKatSayisi" ColumnName="ilanKatSayisi" />
+          <ScalarProperty Name="ilanIsitma" ColumnName="ilanIsitma" />
+          <ScalarProperty Name="ilanBanyoSayisi" ColumnName="ilanBanyoSayisi" />
+          <ScalarProperty Name="ilanBalkon" ColumnName="ilanBalkon" />
+          <ScalarProperty Name="ilanEsyali" ColumnName="ilanEsyali" />
+          <ScalarProperty Name="ilanKullanimDurumu" ColumnName="ilanKullanimDurumu" />
+          <ScalarProperty Name="ilanAidat" ColumnName="ilanAidat" />
+          <ScalarProperty Name="ilanKimden" ColumnName="ilanKimden" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategori">
+      <EntityTypeMapping TypeName="DB01Model.Kategori">
+        <MappingFragment StoreEntitySet="Kategori">
+          <ScalarProperty Name="kategoriId" ColumnName="kategoriId" />
+          <ScalarProperty Name="kategoriKodu" ColumnName="kategoriKodu" />
+          <ScalarProperty Name="kategoriAdi" ColumnName="kategoriAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kayit">
+      <EntityTypeMapping TypeName="DB01Model.Kayit">
+        <MappingFragment StoreEntitySet="Kayit">
+          <ScalarProperty Name="kayitId" ColumnName="kayitId" />
+          <ScalarProperty Name="kayitKategoriId" ColumnName="kayitKategoriId" />
+          <ScalarProperty Name="kayitilanId" ColumnName="kayitilanId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uye__">
+      <EntityTypeMapping TypeName="DB01Model.Uye__">
+        <MappingFragment StoreEntitySet="Uye&#xD;&#xA;">
+          <ScalarProperty Name="uyeId" ColumnName="uyeId" />
+          <ScalarProperty Name="uyeKullaniciAdi" ColumnName="uyeKullaniciAdi" />
+          <ScalarProperty Name="uyeEmail" ColumnName="uyeEmail" />
+          <ScalarProperty Name="uyeAdSoyad" ColumnName="uyeAdSoyad" />
+          <ScalarProperty Name="uyeAdmin" ColumnName="uyeAdmin" />
+          <ScalarProperty Name="uyeSatici" ColumnName="uyeSatici" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB01Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ilan">
+    <Key>
+      <PropertyRef Name="ilanId" />
+    </Key>
+    <Property Name="ilanId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ilanNo" Type="int" Nullable="false" />
+    <Property Name="ilanTarihi" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ilanEmlakTipi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ilanMetreKareBrut" Type="int" Nullable="false" />
+    <Property Name="ilanMetreKareNet" Type="int" Nullable="false" />
+    <Property Name="ilanOdaSayisi" Type="int" Nullable="false" />
+    <Property Name="ilanBinaYasi" Type="int" Nullable="false" />
+    <Property Name="ilanBulunduguKat" Type="int" Nullable="false" />
+    <Property Name="ilanKatSayisi" Type="int" Nullable="false" />
+    <Property Name="ilanIsitma" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ilanBanyoSayisi" Type="int" Nullable="false" />
+    <Property Name="ilanBalkon" Type="int" Nullable="false" />
+    <Property Name="ilanEsyali" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ilanKullanımDurumu" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ilanAidat" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ilanKimden" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="kategoriId" />
+    </Key>
+    <Property Name="kategoriId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="kategoriKodu" Type="int" Nullable="false" />
+    <Property Name="kategoriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kayit">
+    <Key>
+      <PropertyRef Name="kayitId" />
+    </Key>
+    <Property Name="kayitId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="kayitKategoriId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="kayitilanId" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Uye&#xD;&#xA;">
+    <Key>
+      <PropertyRef Name="uyeId" />
+    </Key>
+    <Property Name="uyeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uyeKullaniciAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="uyeEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="uyeAdSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="uyeAdmin" Type="int" Nullable="false" />
+    <Property Name="uyeSatici" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Kayit_Toilan">
+    <End Role="ilan" Type="Self.ilan" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ilan">
+        <PropertyRef Name="ilanId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitilanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayit_ToKategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="kategoriId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitKategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB01ModelStoreContainer">
+    <EntitySet Name="ilan" EntityType="Self.ilan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kayit" EntityType="Self.Kayit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uye&#xD;&#xA;" EntityType="Self.Uye&#xD;&#xA;" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Kayit_Toilan" Association="Self.FK_Kayit_Toilan">
+      <End Role="ilan" EntitySet="ilan" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayit_ToKategori" Association="Self.FK_Kayit_ToKategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

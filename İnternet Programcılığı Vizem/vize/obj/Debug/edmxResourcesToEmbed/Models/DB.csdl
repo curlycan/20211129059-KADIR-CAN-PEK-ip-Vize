@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB01Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ilan">
+    <Key>
+      <PropertyRef Name="ilanId" />
+    </Key>
+    <Property Name="ilanId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ilanNo" Type="Int32" Nullable="false" />
+    <Property Name="ilanFiyat" Type="Int32" Nullable="false" />
+    <Property Name="ilanTarihi" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ilanEmlakTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ilanMetreKareBrut" Type="Int32" Nullable="false" />
+    <Property Name="ilanMetreKareNet" Type="Int32" Nullable="false" />
+    <Property Name="ilanOdaSayisi" Type="Int32" Nullable="false" />
+    <Property Name="ilanBinaYasi" Type="Int32" Nullable="false" />
+    <Property Name="ilanBulunduguKat" Type="Int32" Nullable="false" />
+    <Property Name="ilanKatSayisi" Type="Int32" Nullable="false" />
+    <Property Name="ilanIsitma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ilanBanyoSayisi" Type="Int32" Nullable="false" />
+    <Property Name="ilanBalkon" Type="Int32" Nullable="false" />
+    <Property Name="ilanEsyali" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ilanKullanimDurumu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ilanAidat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ilanKimden" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kayit" Relationship="Self.FK_Kayit_Toilan" FromRole="ilan" ToRole="Kayit" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="kategoriId" />
+    </Key>
+    <Property Name="kategoriId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kategoriKodu" Type="Int32" Nullable="false" />
+    <Property Name="kategoriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kayit" Relationship="Self.FK_Kayit_ToKategori" FromRole="Kategori" ToRole="Kayit" />
+  </EntityType>
+  <EntityType Name="Kayit">
+    <Key>
+      <PropertyRef Name="kayitId" />
+    </Key>
+    <Property Name="kayitId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kayitKategoriId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kayitilanId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ilan" Relationship="Self.FK_Kayit_Toilan" FromRole="Kayit" ToRole="ilan" />
+    <NavigationProperty Name="Kategori" Relationship="Self.FK_Kayit_ToKategori" FromRole="Kayit" ToRole="Kategori" />
+  </EntityType>
+  <EntityType Name="Uye__">
+    <Key>
+      <PropertyRef Name="uyeId" />
+    </Key>
+    <Property Name="uyeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uyeKullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="uyeEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="uyeAdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="uyeAdmin" Type="Int32" Nullable="false" />
+    <Property Name="uyeSatici" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Kayit_Toilan">
+    <End Role="ilan" Type="Self.ilan" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ilan">
+        <PropertyRef Name="ilanId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitilanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayit_ToKategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="kategoriId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitKategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB01Entities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ilan" EntityType="Self.ilan" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+    <EntitySet Name="Kayit" EntityType="Self.Kayit" />
+    <EntitySet Name="Uye__" EntityType="Self.Uye__" />
+    <AssociationSet Name="FK_Kayit_Toilan" Association="Self.FK_Kayit_Toilan">
+      <End Role="ilan" EntitySet="ilan" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayit_ToKategori" Association="Self.FK_Kayit_ToKategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
